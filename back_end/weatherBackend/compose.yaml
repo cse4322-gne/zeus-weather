@@ -1,0 +1,7 @@
+﻿services:
+  weatherbackend:
+    image: weatherbackend
+    build:
+      context: .
+      dockerfile: weatherBackend/Dockerfile
+

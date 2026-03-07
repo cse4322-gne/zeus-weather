@@ -1,0 +1,13 @@
+# JetBrains Rider
+.idea/
+
+# .NET build folders
+bin/
+obj/
+
+# user settings
+*.user
+*.suo
+
+# macOS
+.DS_Store
