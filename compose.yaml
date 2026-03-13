@@ -3,7 +3,7 @@ services:
     container_name: frontend
     build: ./front_end/weather-dashboard
     ports: 
-      - "8080:8080"
+      - "5173:5173"
     depends_on: 
       - backend
     restart: always
