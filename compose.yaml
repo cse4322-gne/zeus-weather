@@ -10,7 +10,10 @@ services:
   
   backend: 
     container_name: backend
-    build: ./back_end/weatherBackend/weatherBackend
+    build: 
+      context: ./back_end/weatherBackend
+      dockerfile: weatherBackend/Dockerfile
+    
     ports: 
       - "8000:8000"
     depends_on:
@@ -28,3 +31,7 @@ services:
       retries: 5
     ports: 
       - "5432:5432"
+    environment:
+      - POSTGRES_USER=${db_user}
+      - POSTGRES_PASSWORD=${db_password}
+      - POSTGRES_DB=${db_name}
