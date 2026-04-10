@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { supabase } from '../lib/supabase';
+import { loginUser } from '../lib/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import { CloudLightning, AlertCircle, Loader2 } from 'lucide-react';
 import gsap from 'gsap';
@@ -64,19 +64,15 @@ export default function Login() {
     setLoading(true);
     setError(null);
     
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      setError(error.message);
-      setLoading(false);
-    } else {
+    try {
+      await loginUser(email, password);
       // Success! Trigger Zeus Lightning Effect then route
       triggerLightningStrike(() => {
         navigate('/');
       });
+    } catch (err: any) {
+      setError(err.message || 'Login failed');
+      setLoading(false);
     }
   };
 

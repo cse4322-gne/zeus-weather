@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { getUserEmail, logout } from '../lib/auth';
 import { useNavigate } from 'react-router-dom';
 import { CloudRain, LogOut } from 'lucide-react';
 import './Auth.css';
@@ -9,15 +9,11 @@ export default function Dashboard() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      if (user) {
-        setEmail(user.email ?? null);
-      }
-    });
+    setEmail(getUserEmail());
   }, []);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
+  const handleLogout = () => {
+    logout();
     navigate('/login');
   };
 
@@ -37,7 +33,7 @@ export default function Dashboard() {
       <main>
         <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Welcome back{email ? `, ${email}` : ''}!</h1>
         <p style={{ color: 'var(--auth-text-secondary)'}}>
-          This is your protected dashboard. You are successfully authenticated via Supabase.
+          This is your protected dashboard. You are successfully authenticated.
         </p>
 
         {/* Temporary placeholder content */}
