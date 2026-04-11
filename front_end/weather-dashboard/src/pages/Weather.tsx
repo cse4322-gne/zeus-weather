@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { Sun, Cloud, CloudRain, Search, Wind, Droplets, MapPin, Navigation } from 'lucide-react';
-import type { WeatherData } from './types';
+import type { WeatherData } from '../types';
 import { Routes, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Dashboard from './pages/Dashboard';
-import { ProtectedRoute } from './components/ProtectedRoute';
-
+import Login from '../pages/Login';
+import Signup from '../pages/Signup';
+import Dashboard from '../pages/Dashboard';
+import { ProtectedRoute } from '../components/ProtectedRoute';
+// this is the previous code from app.tsx
 const WeatherDashboard: React.FC = () => {
   const [search, setSearch] = useState('');
 
