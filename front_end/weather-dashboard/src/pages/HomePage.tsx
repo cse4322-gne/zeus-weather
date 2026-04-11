@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { Sun, Cloud, CloudRain, Search, Wind, Droplets, MapPin, Navigation } from 'lucide-react';
+import { Sun, Cloud, CloudRain, Search, Wind, Droplets, MapPin, Navigation, LogOut } from 'lucide-react';
 import type { WeatherData } from '../types/types';
+import { logout } from '../lib/auth';
+import { useNavigate } from 'react-router-dom';
 
 /**
  * This is the home page of the application, the one that users can search for weather from. 
@@ -9,7 +11,7 @@ import type { WeatherData } from '../types/types';
 
 export const HomePage: React.FC = () => {
   const [search, setSearch] = useState('');
-
+  const navigate = useNavigate();
   // Enhanced Mock Data
   const [weather] = useState<WeatherData>({
     city: "San Francisco",
@@ -27,6 +29,11 @@ export const HomePage: React.FC = () => {
       { day: 'Fri', temp: 62, condition: 'Rainy' },
     ]
   });
+
+  const handleLogout = () => {
+      logout();
+      navigate('/login');
+    };
 
   return (
     <div className="min-h-screen bg-[#0f172a] bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-slate-900 via-[#1e293b] to-[#0f172a] text-slate-100 p-4 md:p-10 font-sans">
@@ -134,6 +141,12 @@ export const HomePage: React.FC = () => {
         </section>
 
       </main>
+      <div className='flex items-center justify-center p-3'>
+        <button onClick={handleLogout} className="logout-btn">
+          <LogOut size={18} />
+          <span>Logout</span>
+        </button>
+      </div>
     </div>
   );
 };
