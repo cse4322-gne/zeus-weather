@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using weatherBackend.Models;
 using weatherBackend.Services;
@@ -32,8 +33,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //this is where I am adding the DB context 
 builder.Services.AddDbContext<AppDbContext>(options => 
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+// adding global http client here 
+builder.Services.AddHttpClient("weather", (serviceProvider, httpClient) =>
+{
+    httpClient.BaseAddress = new Uri("https://api.weatherapi.com/v1/");
+} );
 
 builder.Services.AddScoped<PasswordHasher<User>>();
+// allowing frontend to hit the api
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend",

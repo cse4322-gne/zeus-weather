@@ -1,21 +1,17 @@
 using weatherBackend.Models;
 
 namespace weatherBackend.DTOs;
-// quick enum for the wind direction so we aren't manually typing it, and we can use this type on the front end as well
-public enum WindDirection
-{
-       South,
-       North,
-       East,
-       West
-}
+public record ForecastDayDto(string Day, double High, double Low, string Condition);
 
-public record ForecastResultDto(int HighTemperature, 
-       int LowTemperature, 
-       int Humidity, 
-       int WindSpeed, 
-       WindDirection WindDirection, 
-       double Visibility
-       );
+public record ForecastResultDto(
+       string City,
+       double Temperature,
+       string Condition,
+       double High,
+       double Low,
+       int Humidity,
+       double WindSpeed,
+       List<ForecastDayDto> Forecast
+);
 
 public record GetUserSavedLocationsDto(SavedLocation[] SavedLocations);
