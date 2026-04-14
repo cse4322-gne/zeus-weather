@@ -9,7 +9,10 @@ import { API_BASE } from "./auth"
 export const getForecast = async (cityName: string): Promise<WeatherData> => {
     const result  = await fetch(`${API_BASE}/api/Weather/GetForecast/${cityName}`, {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`,
+        },
     });
 
     if (!result.ok) {
