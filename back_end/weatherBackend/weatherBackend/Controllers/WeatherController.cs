@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.WebUtilities;
 using weatherBackend.DTOs;
 using weatherBackend.Models;
@@ -6,6 +7,7 @@ namespace weatherBackend.Controllers;
 using System;
 using Microsoft.AspNetCore.Mvc;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class WeatherController : ControllerBase
