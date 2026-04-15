@@ -99,10 +99,10 @@ export const HomePage: React.FC = () => {
         </div>
       )}
 
-      <main className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <main className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
         
         {/* Main Focus: Current Weather */}
-        <section className="lg:col-span-8 space-y-8">
+        <section className="lg:col-span-7 space-y-8">
           <div className="relative overflow-hidden bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[2.5rem] p-8 md:p-12 shadow-2xl shadow-blue-900/20">
             {/* Decorative background element */}
             <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl"></div>
@@ -172,7 +172,7 @@ export const HomePage: React.FC = () => {
         </section>
 
         {/* Sidebar: Forecast */}
-        <section className="lg:col-span-4 bg-slate-800/30 backdrop-blur-md border border-slate-700/50 rounded-[2.5rem] p-8 shadow-xl">
+        <section className="lg:col-span-5 bg-slate-800/30 backdrop-blur-md border border-slate-700/50 rounded-[2.5rem] p-8 shadow-xl">
           <h3 className="text-xl font-bold mb-8">Weekly Forecast</h3>
           {weather ? (
             <div className="space-y-8">
